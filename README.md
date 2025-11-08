@@ -1,0 +1,2 @@
+# HackTrentProject
+AI Mandate automation.
