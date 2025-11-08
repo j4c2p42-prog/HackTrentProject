@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Mandate Platform | Mandate Overview</title>
+    <link rel="stylesheet" href="Styles.css">
+    <style>
+        main {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .mandate-card {
+            background: rgba(0, 191, 255, 0.1);
+            border: 1px solid rgba(0, 191, 255, 0.4);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        .mandate-card h3 {
+            margin-top: 0;
+        }
+        .mandate-card ul {
+            padding-left: 20px;
+        }
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .actions a {
+            flex: 1 1 220px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Mandate Overview</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="market.html">Marketplace</a></li>
+            <li><a href="Mandate.html" aria-current="page">Mandate</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section class="mandate-card" aria-labelledby="mandate-summary-heading">
+        <h2 id="mandate-summary-heading">Mandate Summary</h2>
+        <p>Every buyer and seller listed in the marketplace begins their engagement with a standardized AI mandate. This mandate outlines the scope of work, milestone checkpoints, deliverables, and dispute resolution terms to ensure trustless transactions.</p>
+        <ul>
+            <li><strong>Participants:</strong> Buyer, Seller, AI Escrow Agent</li>
+            <li><strong>Escrow Type:</strong> Tokenized smart contract (multi-sig)</li>
+            <li><strong>Verification:</strong> On-chain proof of funds and identity validation</li>
+            <li><strong>Completion Criteria:</strong> Milestones approved by both parties or automated testing suites</li>
+        </ul>
+    </section>
+
+    <section id="participant-details" class="mandate-card" aria-live="polite">
+        <h3 id="participant-heading">Participant Mandate Details</h3>
+        <p id="participant-summary">Select a buyer or seller from the marketplace to view their tailored mandate information.</p>
+        <dl>
+            <div>
+                <dt>Role</dt>
+                <dd id="participant-role">—</dd>
+            </div>
+            <div>
+                <dt>Transaction Type</dt>
+                <dd id="participant-transaction">—</dd>
+            </div>
+            <div>
+                <dt>Status</dt>
+                <dd id="participant-status">—</dd>
+            </div>
+            <div>
+                <dt>Mandate Milestones</dt>
+                <dd>
+                    <ul id="participant-milestones">
+                        <li>Initiate escrow and share project scope</li>
+                        <li>Define verification datasets and QA process</li>
+                        <li>Confirm delivery and release escrow</li>
+                    </ul>
+                </dd>
+            </div>
+        </dl>
+    </section>
+
+    <section class="mandate-card">
+        <h3>Next Steps</h3>
+        <p>Select one of the actions below to continue your transaction.</p>
+        <div class="actions">
+            <a class="button" href="market.html">Return to Marketplace</a>
+            <a class="button" href="about.html">Review Compliance</a>
+            <a class="button" href="index.html#contact">Contact Support</a>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 AI Mandate Program. All rights reserved.</p>
+</footer>
+
+<script>
+    const participantData = {
+        "lara-vance": {
+            name: "Lara Vance",
+            role: "Buyer",
+            transaction: "Digital Artwork",
+            status: "Active",
+            summary: "Lara is funding a digital artwork collection and requires phased deliveries tied to escrow releases.",
+            milestones: [
+                "Deposit funds into escrow and sign scope of work",
+                "Approve concept art and initiate production sprint",
+                "Confirm final artwork delivery and release escrow"
+            ]
+        },
+        "ethan-cross": {
+            name: "Ethan Cross",
+            role: "Seller",
+            transaction: "AI Model Training Data",
+            status: "Pending",
+            summary: "Ethan supplies curated datasets and must pass compliance and privacy validation before escrow release.",
+            milestones: [
+                "Submit anonymised dataset sample for compliance review",
+                "Upload full encrypted dataset with provenance logs",
+                "Pass privacy audit and unlock escrow"
+            ]
+        },
+        "yara-singh": {
+            name: "Yara Singh",
+            role: "Buyer",
+            transaction: "Cybersecurity License",
+            status: "Verified",
+            summary: "Yara is purchasing a zero-trust security license with staged penetration testing milestones.",
+            milestones: [
+                "Execute escrow and set baseline infrastructure access",
+                "Complete mid-engagement penetration testing",
+                "Validate remediation and finalize escrow release"
+            ]
+        },
+        "marcus-osei": {
+            name: "Marcus Osei",
+            role: "Seller",
+            transaction: "Robotics Components",
+            status: "Active",
+            summary: "Marcus provides robotics hardware components that require QA certification checkpoints.",
+            milestones: [
+                "Deliver component specifications for review",
+                "Complete third-party QA certification",
+                "Ship components and receive escrow funds"
+            ]
+        },
+        "nadia-petrova": {
+            name: "Nadia Petrova",
+            role: "Seller",
+            transaction: "Blockchain Verification Service",
+            status: "New",
+            summary: "Nadia offers blockchain verification services with automated SLA monitoring.",
+            milestones: [
+                "Provision verification node and share API credentials",
+                "Demonstrate uptime compliance over 48 hours",
+                "Pass automated SLA audit and close mandate"
+            ]
+        }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const participantKey = params.get("participant");
+    const details = participantKey ? participantData[participantKey.toLowerCase()] : undefined;
+
+    if (details) {
+        document.getElementById("participant-heading").textContent = `${details.name}'s Mandate Details`;
+        document.getElementById("participant-summary").textContent = details.summary;
+        document.getElementById("participant-role").textContent = details.role;
+        document.getElementById("participant-transaction").textContent = details.transaction;
+        document.getElementById("participant-status").textContent = details.status;
+
+        const milestonesList = document.getElementById("participant-milestones");
+        milestonesList.innerHTML = "";
+        details.milestones.forEach((milestone) => {
+            const item = document.createElement("li");
+            item.textContent = milestone;
+            milestonesList.appendChild(item);
+        });
+    }
+</script>
+
+</body>
+</html>
